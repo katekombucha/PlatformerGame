@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private float speed = 3;
+    private float speed = 1;
     private float scale;
     private Rigidbody2D rigidbody2D;
     void Start()

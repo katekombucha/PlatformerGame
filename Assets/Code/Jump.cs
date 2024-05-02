@@ -4,7 +4,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     // Публічна змінна для налаштування сили стрибка в інспекторі Unity.
-    public float jumpForce = 300;
+    public float jumpForce = 150;
     private bool inAir = false;
     
     // Приватна змінна для зберігання компонента Rigidbody2D, який управляє фізикою двовимірного об'єкта.
@@ -35,11 +35,16 @@ public class Jump : MonoBehaviour
             vel.y -= 4 * Time.deltaTime;
             rigidbody2D.velocity = vel;
         }
+        
+        if (rigidbody2D.IsTouchingLayers())
+        {
+            inAir = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.GetComponent<Platform>() != null)
+        if (rigidbody2D.IsTouchingLayers())
         {
             inAir = false;
         }
