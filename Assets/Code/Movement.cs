@@ -14,19 +14,15 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move left if button A is pressed
-        if (Input.GetKey(KeyCode.A))
+        rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigidbody2D.velocity.y);
+
+        if (rigidbody2D.velocity.x < 0)
         {
-            rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
             transform.localScale = new Vector2(-scale, scale);
         }
-        // Move right if button D is pressed
-        if (Input.GetKey(KeyCode.D))
+        else if (rigidbody2D.velocity.x > 0)
         {
-            rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
             transform.localScale = new Vector2(scale, scale);
         }
-        
-
     }
 }
